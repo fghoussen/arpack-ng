@@ -238,7 +238,7 @@ jobs:
     script: |
       sudo docker pull debian                                                                                           \
       &&                                                                                                                \
-      sudo docker create --name mobydick debian /bin/bash -c                                                            \
+      travis_wait 45 sudo docker create --name mobydick debian /bin/bash -c                                             \
       "cat /etc/os-release                                                                                           && \
        cat /etc/apt/sources.list                                                                                     && \
        sed -e 's/stretch/testing/'            -i /etc/apt/sources.list                                               && \

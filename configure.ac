@@ -37,6 +37,7 @@ if test x"$INTERFACE64" == x"1"; then
 else
   INTERFACE64=0
 fi
+AC_SUBST(PYINT)
 
 AC_ARG_VAR(LIBSUFFIX, [suffix to add to ARPACK libraries names])
 AC_ARG_VAR(SYMBOLSUFFIX, [suffix to add to ARPACK, BLAS and LAPACK function names])

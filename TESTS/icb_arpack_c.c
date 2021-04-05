@@ -69,7 +69,12 @@ int ds() {
 
     dMatVec(&(workd[ipntr[0] - 1]), &(workd[ipntr[1] - 1]));
   }
-  if (iparam[4] != nev) {printf("Error: iparam[4] %d, nev %d\n", iparam[4], nev); return 1;} // check number of ev found by arpack.
+
+  // check number of ev found by arpack.
+  if (iparam[4] < nev) { /*arpack may succeed to compute more EV than expected*/
+    printf("Error: iparam[4] %d, nev %d\n", iparam[4], nev);
+    return 1;
+  }
 
   /* call arpack like you would have, but, use dseupd_c instead of dseupd_ */
   dseupd_c(rvec, howmny, select, d, z, ldz, sigma, bmat, N, which, nev, tol,
@@ -141,7 +146,12 @@ int zn() {
 
     zMatVec(&(workd[ipntr[0] - 1]), &(workd[ipntr[1] - 1]));
   }
-  if (iparam[4] != nev) {printf("Error: iparam[4] %d, nev %d\n", iparam[4], nev); return 1;} // check number of ev found by arpack.
+
+  // check number of ev found by arpack.
+  if (iparam[4] < nev) { /*arpack may succeed to compute more EV than expected*/
+    printf("Error: iparam[4] %d, nev %d\n", iparam[4], nev);
+    return 1;
+  }
 
   /* call arpack like you would have, but, use zneupd_c instead of zneupd_ */
   zneupd_c(rvec, howmny, select, d, z, ldz, sigma, workev, bmat, N, which, nev,
